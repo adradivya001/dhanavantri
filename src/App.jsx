@@ -10,6 +10,7 @@ import ContactLocation from './components/ContactLocation';
 import Footer from './components/Footer';
 import AppointmentModal from './components/AppointmentModal';
 import MobileBottomBar from './components/MobileBottomBar';
+import FloatingSideActions from './components/FloatingSideActions';
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,6 +66,9 @@ export default function App() {
 
       {/* Fixed Mobile Bottom Action Bar */}
       <MobileBottomBar onOpenBooking={handleOpenBooking} />
+
+      {/* Floating Edge Side Action Tabs (WhatsApp, Book Appointment, Call) */}
+      <FloatingSideActions onOpenBooking={handleOpenBooking} />
     </div>
   );
 }

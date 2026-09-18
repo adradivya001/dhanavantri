@@ -1,0 +1,75 @@
+.floating-side-tabs {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: auto;
+}
+
+.side-tab {
+  width: 58px;
+  height: 56px;
+  border-radius: 28px 0 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: -4px 6px 18px rgba(0, 0, 0, 0.16);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+  outline: none;
+}
+
+.side-tab:hover {
+  transform: translateX(-6px);
+  box-shadow: -6px 8px 24px rgba(0, 0, 0, 0.24);
+}
+
+.tab-icon-glass {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+}
+
+/* Tab Colors matching screenshot */
+.tab-whatsapp {
+  background-color: #00BFA5;
+}
+
+.tab-calendar {
+  background-color: #0B2240;
+}
+
+.tab-phone {
+  background-color: #E52E2E;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 640px) {
+  .side-tab {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px 0 0 24px;
+  }
+  .tab-icon-glass {
+    width: 34px;
+    height: 34px;
+  }
+  .tab-icon-glass svg {
+    width: 18px;
+    height: 18px;
+  }
+}
