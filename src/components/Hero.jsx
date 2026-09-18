@@ -85,8 +85,6 @@ export default function Hero({ onOpenBooking }) {
           </div>
         </div>
       </div>
-
-      </div>
     </section>
   );
 }
