@@ -1,0 +1,171 @@
+.book-section {
+  background-color: var(--bg-card);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.book-section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.book-section-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: stretch;
+}
+
+.book-form-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.inline-book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.btn-book-submit {
+  padding: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+.form-success-box {
+  text-align: center;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-success-box .success-icon {
+  color: var(--color-teal);
+  margin-bottom: 1rem;
+}
+
+.form-success-box h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.form-success-box p {
+  font-size: 0.925rem;
+  color: var(--text-body);
+  margin-bottom: 1.5rem;
+}
+
+.success-phone-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.success-phone-card a {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-teal);
+  text-decoration: none;
+}
+
+/* Right Info Card */
+.book-info-card {
+  background: linear-gradient(135deg, #0A2540 0%, #081B2E 100%);
+  color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 40px -10px rgba(10, 37, 64, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hotline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: #2DD4BF;
+  background: rgba(45, 212, 191, 0.15);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1.25rem;
+  width: fit-content;
+}
+
+.hotline-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+
+.hotline-desc {
+  font-size: 0.95rem;
+  color: #94A3B8;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+.hotline-box {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.hotline-label {
+  font-size: 0.775rem;
+  color: #94A3B8;
+  font-weight: 600;
+}
+
+.hotline-number {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #2DD4BF;
+  text-decoration: none;
+  margin-top: 0.15rem;
+}
+
+.hotline-number.number-blue {
+  color: #60A5FA;
+}
+
+.hotline-location-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #94A3B8;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 991px) {
+  .book-section-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}

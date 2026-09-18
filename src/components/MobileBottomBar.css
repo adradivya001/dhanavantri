@@ -1,0 +1,49 @@
+.mobile-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 800;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--border-light);
+  padding: 0.65rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  box-shadow: 0 -4px 20px rgba(10, 37, 64, 0.1);
+}
+
+.mobile-bar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0.5rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.call-btn {
+  background-color: var(--bg-secondary);
+  color: var(--color-primary);
+  border: 1px solid var(--border-light);
+}
+
+.book-btn {
+  background-color: var(--color-teal);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
+}
+
+@media (min-width: 992px) {
+  .mobile-bottom-bar {
+    display: none !important;
+  }
+}

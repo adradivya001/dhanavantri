@@ -1,0 +1,169 @@
+.fetal-feature-section {
+  background-color: var(--bg-dark-section);
+  color: #FFFFFF;
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.fetal-feature-section::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(13, 148, 136, 0.15) 0%, rgba(8, 27, 46, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.fetal-feature-container {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.fetal-feature-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.fetal-feature-heading {
+  font-size: clamp(2.1rem, 3.8vw, 3rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.fetal-feature-desc {
+  font-size: 1.1rem;
+  color: var(--text-light-muted);
+  line-height: 1.65;
+  margin-bottom: 2.25rem;
+  max-width: 540px;
+}
+
+.fetal-points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+.fetal-point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.fetal-point-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(20, 184, 166, 0.4);
+  transform: translateX(4px);
+}
+
+.fetal-point-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(20, 184, 166, 0.15);
+  color: var(--color-teal-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.fetal-point-text h3 {
+  font-size: 0.975rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.15rem;
+}
+
+.fetal-point-text p {
+  font-size: 0.85rem;
+  color: var(--text-light-muted);
+}
+
+.fetal-feature-cta {
+  padding: 0.95rem 2.25rem;
+  font-size: 1rem;
+}
+
+/* Right Visual */
+.fetal-feature-visual {
+  position: relative;
+}
+
+.fetal-image-wrapper {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.fetal-feature-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.fetal-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 27, 46, 0) 50%, rgba(8, 27, 46, 0.6) 100%);
+  pointer-events: none;
+}
+
+.fetal-feature-badge {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: rgba(8, 27, 46, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.badge-sparkle-icon {
+  color: var(--color-teal-light);
+}
+
+.badge-main-text {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.badge-sub-text {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-light-muted);
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .fetal-feature-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}

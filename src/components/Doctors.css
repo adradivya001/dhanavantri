@@ -1,0 +1,227 @@
+.doctors-section {
+  background-color: #FFFFFF;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.doctors-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.doctors-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  align-items: stretch;
+}
+
+.doctor-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 30px -5px rgba(10, 37, 64, 0.06);
+  transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.doctor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -8px rgba(10, 37, 64, 0.12);
+  border-color: rgba(13, 148, 136, 0.4);
+}
+
+.doctor-visual-header {
+  padding: 1.75rem 1.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.header-teal {
+  background: linear-gradient(135deg, #E6F7F6 0%, #F0FDF4 100%);
+}
+
+.header-navy {
+  background: linear-gradient(135deg, #EBF1F7 0%, #F0FAFA 100%);
+}
+
+.doctor-icon-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.avatar-teal {
+  background: linear-gradient(135deg, #00A896 0%, #0D9488 100%);
+  color: #FFFFFF;
+}
+
+.avatar-navy {
+  background: linear-gradient(135deg, #0A2540 0%, #16385C 100%);
+  color: #FFFFFF;
+}
+
+.doctor-signage-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0D9488;
+  background: #FFFFFF;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(13, 148, 136, 0.2);
+}
+
+.doctor-signage-tag.tag-navy {
+  color: #0A2540;
+  border-color: rgba(10, 37, 64, 0.2);
+}
+
+.doctor-card-content {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.doctor-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.doctor-credentials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.cred-badge {
+  font-size: 0.8125rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.cred-primary {
+  background: #F1F5F9;
+  color: #334155;
+}
+
+.cred-highlight {
+  background: #E6F7F6;
+  color: #00A896;
+  font-weight: 700;
+}
+
+.cred-highlight-navy {
+  background: rgba(10, 37, 64, 0.08);
+  color: #0A2540;
+  font-weight: 700;
+}
+
+.cred-sub {
+  background: #F8FAFC;
+  color: #64748B;
+  border: 1px solid #E2E8F0;
+}
+
+.doctor-context-desc {
+  font-size: 0.95rem;
+  color: var(--text-body);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  min-height: 4.8em;
+}
+
+.doctor-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.spec-tag {
+  font-size: 0.775rem;
+  font-weight: 700;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+}
+
+.tag-teal {
+  background: rgba(13, 148, 136, 0.1);
+  color: #0D9488;
+}
+
+.tag-navy {
+  background: rgba(10, 37, 64, 0.08);
+  color: #0A2540;
+}
+
+.doctor-action-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.btn-doctor-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.btn-action-teal {
+  background: linear-gradient(135deg, #00A896 0%, #0D9488 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0, 168, 150, 0.25);
+}
+
+.btn-action-teal:hover {
+  background: linear-gradient(135deg, #02BBA7 0%, #0F9E92 100%);
+  transform: translateY(-2px);
+}
+
+.btn-action-navy {
+  background: var(--bg-secondary);
+  color: #0A2540;
+  border: 1px solid var(--border-light);
+}
+
+.btn-action-navy:hover {
+  background: #FFFFFF;
+  border-color: #0A2540;
+}
+
+@media (max-width: 991px) {
+  .doctors-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .doctor-context-desc {
+    min-height: auto;
+  }
+}

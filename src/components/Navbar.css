@@ -1,0 +1,351 @@
+.navbar-header-glass {
+  position: fixed;
+  top: 14px;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  display: flex;
+  justify-content: center;
+  padding: 0 24px;
+  pointer-events: none;
+  transition: top 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-header-glass.navbar-compact {
+  top: 10px;
+}
+
+.navbar-pill-container {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 1240px;
+  height: 76px;
+  background: rgba(8, 12, 18, 0.84);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.30);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-header-glass.navbar-compact .navbar-pill-container {
+  height: 60px;
+  max-width: 1180px;
+  padding: 0 18px;
+  background: rgba(8, 12, 18, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.38);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Brand Logo Area */
+.navbar-brand-glass {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.brand-logo-img-glass {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-header-glass.navbar-compact .brand-logo-img-glass {
+  height: 36px;
+}
+
+.brand-logo-img-sm {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-text-glass {
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.brand-title-glass {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
+  line-height: 1.1;
+  transition: font-size 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-header-glass.navbar-compact .brand-title-glass {
+  font-size: 0.98rem;
+}
+
+.brand-subtitle-glass {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #2DD4BF;
+  letter-spacing: 0.02em;
+  transition: font-size 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-header-glass.navbar-compact .brand-subtitle-glass {
+  font-size: 0.64rem;
+}
+
+/* Center Navigation Container */
+.navbar-nav-glass {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  transition: gap 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-header-glass.navbar-compact .navbar-nav-glass {
+  gap: 22px;
+}
+
+.nav-link-glass {
+  font-size: 0.925rem;
+  font-weight: 600;
+  color: #CBD5E1;
+  transition: color 0.25s ease, font-size 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  text-decoration: none;
+  padding: 0.35rem 0;
+  white-space: nowrap;
+}
+
+.navbar-header-glass.navbar-compact .nav-link-glass {
+  font-size: 0.865rem;
+}
+
+.nav-link-glass:hover {
+  color: #FFFFFF;
+}
+
+.nav-link-glass.active {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.nav-link-glass.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #2DD4BF;
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(45, 212, 191, 0.6);
+}
+
+/* Right Actions Group */
+.navbar-actions-glass {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+  transition: gap 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-header-glass.navbar-compact .navbar-actions-glass {
+  gap: 10px;
+}
+
+/* Single Primary "Book Appointment" CTA Button */
+.btn-glass-pill {
+  background: linear-gradient(135deg, #00A896 0%, #0D9488 100%);
+  color: #FFFFFF;
+  border-radius: 9999px;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 168, 150, 0.35);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.navbar-header-glass.navbar-compact .btn-glass-pill {
+  padding: 0.45rem 1.15rem;
+  font-size: 0.8125rem;
+}
+
+.btn-glass-pill:hover {
+  background: linear-gradient(135deg, #02BBA7 0%, #0F9E92 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 168, 150, 0.45);
+}
+
+/* Hamburger Glass Button */
+.hamburger-btn-glass {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-header-glass.navbar-compact .hamburger-btn-glass {
+  width: 38px;
+  height: 38px;
+}
+
+.hamburger-btn-glass:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile Glass Drawer Overlay */
+.mobile-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  background-color: rgba(6, 18, 30, 0.7);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: auto;
+}
+
+.mobile-drawer-dark {
+  width: 85%;
+  max-width: 360px;
+  height: 100%;
+  background: rgba(8, 12, 18, 0.95);
+  backdrop-filter: blur(24px);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-drawer-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawer-close-btn-dark {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  color: #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.mobile-nav-links-dark {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.mobile-nav-link-dark {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #E2E8F0;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.mobile-nav-link-dark:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #2DD4BF;
+}
+
+.mobile-drawer-footer-dark {
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Tablet & Mobile Breakpoints */
+@media (max-width: 1024px) {
+  .navbar-nav-glass {
+    gap: 22px;
+  }
+  .navbar-header-glass.navbar-compact .navbar-nav-glass {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 840px) {
+  .desktop-only {
+    display: none !important;
+  }
+  .navbar-header-glass {
+    top: 10px;
+    padding: 0 12px;
+  }
+  .navbar-header-glass.navbar-compact {
+    top: 8px;
+  }
+  .navbar-pill-container {
+    height: 66px;
+    padding: 0 16px;
+    border-radius: 33px;
+  }
+  .navbar-header-glass.navbar-compact .navbar-pill-container {
+    height: 56px;
+    padding: 0 12px;
+    border-radius: 28px;
+  }
+  .navbar-header-glass.navbar-compact .brand-logo-img-glass {
+    height: 32px;
+  }
+}
+
+/* Accessibility: Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .navbar-header-glass,
+  .navbar-pill-container,
+  .brand-logo-img-glass,
+  .brand-title-glass,
+  .brand-subtitle-glass,
+  .navbar-nav-glass,
+  .nav-link-glass,
+  .btn-glass-pill,
+  .hamburger-btn-glass {
+    transition: none !important;
+  }
+}
