@@ -20,12 +20,12 @@ export default function Facility() {
             <div className="gallery-item item-large">
               <img 
                 src="/images/vasundhara_building.jpg" 
-                alt="Vasundhara Diagnostics & Sai Kiran Hospital exterior building in Sai Nagar Anantapur" 
+                alt="Vasundhara Diagnostics & Fetal Medicine Centre building in Sai Nagar Anantapur" 
                 className="facility-img"
                 loading="lazy"
               />
               <div className="image-overlay-pill">
-                <Building2 size={16} /> Facility Exterior • Sai Nagar
+                <Building2 size={16} /> Vasundhara Diagnostics • Sai Nagar
               </div>
             </div>
 
@@ -37,7 +37,7 @@ export default function Facility() {
                 loading="lazy"
               />
               <div className="image-overlay-pill">
-                Clinical Reception & Consultation Area
+                Clinical Reception & Diagnostic Area
               </div>
             </div>
           </div>
@@ -48,13 +48,13 @@ export default function Facility() {
               <div className="facility-location-header">
                 <MapPin size={22} className="location-icon" />
                 <div>
-                  <h3 className="facility-name">Sai Nagar Facility Hub</h3>
+                  <h3 className="facility-name">Vasundhara Diagnostics & Fetal Medicine Centre</h3>
                   <span className="facility-address">Sai Nagar, Anantapur, Andhra Pradesh</span>
                 </div>
               </div>
 
               <p className="facility-desc">
-                Our combined facility houses <strong>Sai Kiran Hospital</strong> (Medical & Diabetic Center) and <strong>Vasundhara Diagnostics</strong> (Fetal Medicine Centre), bringing general medicine, diabetes management, diagnostic ultrasound, and specialized fetal care together under one roof.
+                Vasundhara Diagnostics & Fetal Medicine Centre is a specialized diagnostic imaging and fetal care clinic in Sai Nagar, Anantapur. Led by expert radiology and fetal medicine specialists, our centre offers state-of-the-art 3D/4D ultrasound, prenatal anomaly scans, NT screening, Doppler imaging, and specialized medical consultations.
               </p>
 
               <div className="facility-highlights-list">

@@ -21,7 +21,7 @@ export default function ContactLocation() {
   });
 
   const [submitted, setSubmitted] = useState(false);
-  const mapsUrl = "https://www.google.com/maps/search/?api=1&query=Vasundhara+Diagnostics+Sai+Nagar+Anantapur";
+  const mapsUrl = "https://www.google.com/maps/search/?api=1&query=Vasundhara+Diagnostics+Fetal+Medicine+Centre+Sai+Nagar+Anantapur";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -152,21 +152,13 @@ export default function ContactLocation() {
             <div className="visit-us-card">
               <h3 className="visit-title">Visit Us</h3>
 
-              {/* Dual Facility Info */}
+              {/* Clinic Facility Info */}
               <div className="facility-names-block">
                 <div className="facility-item-row">
-                  <Building2 size={16} className="f-icon-teal" />
+                  <Building2 size={18} className="f-icon-teal" />
                   <div>
                     <span className="f-name">VASUNDHARA DIAGNOSTICS</span>
                     <span className="f-sub">Fetal Medicine Centre</span>
-                  </div>
-                </div>
-
-                <div className="facility-item-row">
-                  <Building2 size={16} className="f-icon-blue" />
-                  <div>
-                    <span className="f-name">SAI KIRAN HOSPITAL</span>
-                    <span className="f-sub">Medical & Diabetic Center</span>
                   </div>
                 </div>
               </div>
@@ -174,10 +166,10 @@ export default function ContactLocation() {
               {/* Direct Phone Numbers */}
               <div className="visit-phones-grid">
                 <a href="tel:7989330974" className="visit-phone-link">
-                  <Phone size={15} /> 7989330974
+                  <Phone size={15} /> 79893 30974
                 </a>
                 <a href="tel:9391251558" className="visit-phone-link">
-                  <Phone size={15} /> 9391251558
+                  <Phone size={15} /> 93912 51558
                 </a>
               </div>
 
@@ -205,8 +197,8 @@ export default function ContactLocation() {
               {/* Embedded Map Frame inside Visit Us column */}
               <div className="merged-map-container">
                 <iframe
-                  title="Vasundhara Diagnostics & Sai Kiran Hospital Map"
-                  src="https://maps.google.com/maps?q=Sai%20Nagar%20Anantapur&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  title="Vasundhara Diagnostics & Fetal Medicine Centre Map"
+                  src="https://maps.google.com/maps?q=Vasundhara%20Diagnostics%20Fetal%20Medicine%20Centre%20Sai%20Nagar%20Anantapur&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   width="100%"
                   height="220"
                   style={{ border: 0, borderRadius: '14px' }}

@@ -35,7 +35,7 @@ export default function Hero({ onOpenBooking }) {
 
             <a href="tel:7989330974" className="btn-pill-secondary">
               <Phone size={16} />
-              <span>Call 79893 30974</span>
+              <span>Call Us</span>
             </a>
           </div>
 
