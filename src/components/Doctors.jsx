@@ -73,7 +73,7 @@ export default function Doctors({ onOpenBooking }) {
                 <Stethoscope size={32} />
               </div>
               <div className="doctor-signage-tag tag-navy">
-                <span>Sai Kiran Hospital • Medical & Diabetic Center</span>
+                <span>General Medicine & Diabetes Specialist</span>
               </div>
             </div>
 
@@ -101,9 +101,12 @@ export default function Doctors({ onOpenBooking }) {
 
               {/* Card Footer Action */}
               <div className="doctor-action-footer">
-                <a href="tel:9391251558" className="btn-doctor-action btn-action-navy">
-                  Call 93912 51558
-                </a>
+                <button 
+                  onClick={() => onOpenBooking("General Medicine Consultation")} 
+                  className="btn-doctor-action btn-action-navy"
+                >
+                  Book Consultation
+                </button>
               </div>
             </div>
           </div>

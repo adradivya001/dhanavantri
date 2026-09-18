@@ -32,11 +32,6 @@ export default function Hero({ onOpenBooking }) {
               <span>Book Appointment</span>
               <ArrowRight size={18} />
             </button>
-
-            <a href="tel:7989330974" className="btn-pill-secondary">
-              <Phone size={16} />
-              <span>Call Us</span>
-            </a>
           </div>
 
           {/* Verified Rating / Location Strip */}
