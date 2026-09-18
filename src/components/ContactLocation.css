@@ -6,180 +6,408 @@
 
 .contact-header {
   text-align: center;
-  margin-bottom: 3.5rem;
+  margin-bottom: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.contact-container-grid {
+.location-grid-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: stretch;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 1.75rem;
+  align-items: start;
 }
 
-/* Left Form Column */
-.contact-form-column {
+.location-col-left,
+.location-col-right {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
 }
 
-.appointment-form-card {
+/* 1. Map Card */
+.map-card-wrapper {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 20px rgba(10, 37, 64, 0.05);
+}
+
+.map-overlay-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(8, 12, 18, 0.92);
+  color: #FFFFFF;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(8px);
+}
+
+.map-overlay-btn:hover {
+  background: #000000;
+  transform: translateY(-2px);
+}
+
+/* 2. How to Reach Card */
+.reach-us-card {
   background-color: #FFFFFF;
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: 2.25rem 2rem;
-  box-shadow: var(--shadow-md);
-  height: 100%;
+  border-radius: 20px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 20px rgba(10, 37, 64, 0.04);
 }
 
-.merged-app-form {
+.reach-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.reach-icon-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(13, 148, 136, 0.1);
+  color: var(--color-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+.reach-steps-list {
   display: flex;
   flex-direction: column;
   gap: 1.15rem;
 }
 
-.btn-submit-merged {
-  padding: 0.95rem;
-  margin-top: 0.5rem;
-  font-size: 0.95rem;
-}
-
-.form-disclaimer-sm {
-  font-size: 0.775rem;
-  color: var(--text-muted);
-  text-align: center;
-}
-
-/* Right Visit Us Column */
-.contact-visit-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.visit-us-card {
-  background-color: #FFFFFF;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: 2.25rem 2rem;
-  box-shadow: var(--shadow-md);
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  height: 100%;
-}
-
-.visit-title {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--color-primary);
-  line-height: 1.2;
-}
-
-.facility-names-block {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  background: var(--bg-secondary);
-  padding: 1rem 1.15rem;
-  border-radius: var(--radius-md);
-  border-left: 3px solid var(--color-teal);
-}
-
-.facility-item-row {
+.reach-step-item {
   display: flex;
   align-items: flex-start;
-  gap: 0.65rem;
+  gap: 0.85rem;
 }
 
-.f-icon-teal {
-  color: var(--color-teal);
-  margin-top: 0.2rem;
-}
-
-.f-icon-blue {
-  color: var(--color-primary);
-  margin-top: 0.2rem;
-}
-
-.f-name {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 800;
-  color: var(--color-primary);
-  line-height: 1.2;
-}
-
-.f-sub {
-  display: block;
+.step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1E3A8A;
+  color: #FFFFFF;
   font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.visit-phones-grid {
+  font-weight: 800;
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
 }
 
-.visit-phone-link {
-  display: inline-flex;
+.step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.step-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1E293B;
+}
+
+.step-desc {
+  font-size: 0.8125rem;
+  color: #64748B;
+  line-height: 1.5;
+}
+
+/* 3. Address Card */
+.address-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 20px rgba(10, 37, 64, 0.04);
+}
+
+.address-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.address-icon-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(13, 148, 136, 0.1);
+  color: var(--color-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.address-subtext {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 0.25rem;
+}
+
+.address-full-text {
+  font-size: 0.925rem;
+  color: #1E293B;
+  line-height: 1.5;
+  background: var(--bg-secondary);
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border-left: 3px solid var(--color-teal);
+  margin-bottom: 1rem;
+}
+
+.address-actions-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.btn-copy-address {
+  background: none;
+  border: none;
+  color: #1E3A8A;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.95rem;
-  font-weight: 800;
+  padding: 0.25rem 0;
+  transition: color var(--transition-fast);
+}
+
+.btn-copy-address:hover {
   color: var(--color-teal);
-  background: rgba(13, 148, 136, 0.08);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-full);
+}
+
+.btn-directions-primary {
+  background: #1D4ED8;
+  color: #FFFFFF;
+  border-radius: 12px;
+  padding: 0.85rem 1.25rem;
+  font-size: 0.925rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   text-decoration: none;
-  border: 1px solid rgba(13, 148, 136, 0.15);
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.3);
   transition: all var(--transition-fast);
 }
 
-.visit-phone-link:hover {
-  background: rgba(13, 148, 136, 0.15);
-  transform: translateY(-1px);
+.btn-directions-primary:hover {
+  background: #1E40AF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(29, 78, 216, 0.4);
 }
 
-.visit-location-row {
+/* 4. Parking & Accessibility Card */
+.parking-access-card {
+  background-color: #F0F9FF;
+  border: 1px solid #BAE6FD;
+  border-radius: 18px;
+  padding: 1.25rem 1.5rem;
+}
+
+.parking-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.parking-icon {
+  color: #0284C7;
+}
+
+.parking-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0369A1;
+}
+
+.parking-list {
+  list-style: disc;
+  padding-left: 1.2rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+/* 5. OPD Status & Helpline Dark Card */
+.opd-dark-card {
+  background: #08121E;
+  border-radius: 20px;
+  padding: 1.75rem;
+  color: #FFFFFF;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.opd-status-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.opd-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.opd-label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  color: #94A3B8;
+  letter-spacing: 0.06em;
+}
+
+.opd-hours {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.opd-live-badge {
+  background: rgba(45, 212, 191, 0.15);
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  color: #2DD4BF;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.725rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.opd-alert-note {
+  font-size: 0.775rem;
+  color: #E2E8F0;
+  margin-top: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.opd-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin-bottom: 1.15rem;
+}
+
+.opd-helpline-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.helpline-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #94A3B8;
+  letter-spacing: 0.05em;
+}
+
+.helpline-numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-left: 1.5rem;
+}
+
+.num-row {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  color: var(--text-body);
-  font-weight: 600;
 }
 
-.loc-icon {
-  color: var(--color-teal);
-  flex-shrink: 0;
+.num-label {
+  color: #CBD5E1;
+  font-weight: 500;
 }
 
-.visit-buttons-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.85rem;
+.num-value {
+  color: #FFFFFF;
+  font-weight: 700;
+  text-decoration: none;
 }
 
-.btn-visit-action {
-  padding: 0.75rem 1rem;
-  font-size: 0.875rem;
-  width: 100%;
+.num-value:hover {
+  color: #2DD4BF;
 }
 
-.merged-map-container {
-  width: 100%;
-  margin-top: 0.25rem;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
+.btn-whatsapp-full {
+  background: #00BFA5;
+  color: #FFFFFF;
+  border-radius: 12px;
+  padding: 0.85rem 1.25rem;
+  font-size: 0.925rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  margin-top: 1.25rem;
+  box-shadow: 0 4px 14px rgba(0, 191, 165, 0.35);
+  transition: all var(--transition-fast);
 }
 
+.btn-whatsapp-full:hover {
+  background: #00A892;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 191, 165, 0.45);
+}
+
+/* Responsive */
 @media (max-width: 991px) {
-  .contact-container-grid {
+  .location-grid-layout {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
   }
 }
