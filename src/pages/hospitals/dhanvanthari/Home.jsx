@@ -42,10 +42,10 @@ const Home = () => {
     phoneUrl: `tel:${contact.phone.replace(/\D/g, '')}`,
     navLinks: [
       { id: "about", label: "About", href: "#hero" },
+      { id: "doctors", label: "Doctors", href: "#doctors" },
       { id: "departments", label: "Departments", href: "#departments" },
       { id: "services", label: "Services", href: "#services" },
       { id: "facilities", label: "Facilities", href: "#facilities" },
-      { id: "doctors", label: "Doctors", href: "#doctors" },
       { id: "contact", label: "Contact", href: "#contact" }
     ]
   };
@@ -56,15 +56,15 @@ const Home = () => {
     title2: "Compassionate Healing.",
     desc: hospital.about.description,
     buttonText: "Book Appointment",
-    badgeText: "Trusted Care • Ramnagar, Anantapur",
+    badgeText: "Trusted Care • Ram Nagar, Anantapur",
     stats: [
       { value: "Multispecialty", label: "CARE" },
       { value: "Emergency", label: "24/7 SUPPORT" },
       { value: "Experienced", label: "DOCTORS" },
-      { value: "Ramnagar", label: "ANANTAPUR" }
+      { value: "Ram Nagar", label: "ANANTAPUR" }
     ],
     image: "/hospitals/dhanvanthari/hero/dhanavantri.png",
-    imageAlt: "Dhanvanthari Hospital Building in Ramnagar Anantapur",
+    imageAlt: "Dhanvanthari Hospital Building in Ram Nagar Anantapur",
     imageFit: "cover",
     imagePosition: "center 50%"
   };
@@ -73,6 +73,7 @@ const Home = () => {
     eyebrow: "OUR SPECIALTIES",
     heading: "Hospital Departments",
     subheading: "Comprehensive medical specialties for complete patient care.",
+    isFlowing: true,
     services: departments.map((dept, index) => ({
       number: String(index + 1).padStart(2, '0'),
       icon: dept.icon || "Activity",
@@ -104,7 +105,7 @@ const Home = () => {
     image: "/hospitals/dhanvanthari/hero/dhanavantri.png",
     imageAlt: "Dhanvanthari Hospital Care",
     badgeText1: "Dhanvanthari Hospital",
-    badgeText2: "Ramnagar, Anantapur",
+    badgeText2: "Ram Nagar, Anantapur",
     points: hospital.about.principles.slice(0, 3).map(p => ({
       icon: "CheckCircle",
       title: p.title,
@@ -166,50 +167,38 @@ const Home = () => {
   const doctorsData = {
     eyebrow: "OUR SPECIALISTS",
     heading: "Expert Medical Professionals",
-    subheading: "Experienced healthcare providers across various specialties.",
-    doctorsList: doctors.map(doc => ({
+    subheading: "Experienced surgeons and medical specialists providing dedicated patient care at Dhanvanthari Hospital.",
+    doctorsList: doctors.map((doc, index) => ({
       id: doc.id,
       name: doc.name,
-      signage: doc.departmentId,
-      icon: doc.icon || "UserCheck",
-      theme: "teal",
-      credentials: doc.qualifications.map(q => ({ text: q, type: "primary" })),
-      desc: doc.bio || "Specialist doctor.",
+      signage: doc.signage || doc.departmentId,
+      icon: doc.icon || (index % 2 === 0 ? "Stethoscope" : "UserCheck"),
+      theme: doc.theme || (index % 2 === 0 ? "teal" : "navy"),
+      credentials: doc.qualifications.map((q, qIdx) => ({
+        text: q,
+        type: qIdx === 0 ? "primary" : (doc.theme === "navy" ? "highlight-navy" : "highlight")
+      })),
+      desc: doc.bio || "Specialist doctor at Dhanvanthari Hospital.",
       tags: doc.specializations || [],
       actionLabel: "Book Consultation",
-      actionService: doc.departmentId
+      actionService: doc.signage || doc.name
     }))
   };
-  
-  if (doctorsData.doctorsList.length === 0) {
-    doctorsData.doctorsList = [{
-      id: "placeholder",
-      name: "Doctor Information",
-      signage: "Specialists",
-      icon: "UserCheck",
-      theme: "teal",
-      credentials: [{ text: "Specialized Care", type: "primary" }],
-      desc: "Specialist information will be updated soon.",
-      tags: ["Medical Care"],
-      actionLabel: "Contact Us",
-      actionService: "General Consultation"
-    }];
-  }
 
   const contactData = {
     eyebrow: "LOCATION & CONTACT",
     heading: "Visit Dhanvanthari",
-    subheading: "Located in Ramnagar, Anantapur for easy access to quality healthcare.",
-    mapUrl: contact.mapEmbedUrl || "https://maps.google.com/maps?q=Ramnagar%20Anantapur&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    googleMapsLink: contact.googleMapsUrl || "https://maps.google.com",
+    subheading: "Located at Ram Nagar Main Road / Andhra Bank Colony, Anantapur for easy access to quality healthcare.",
+    mapUrl: contact.mapEmbedUrl || "https://maps.google.com/maps?q=Dhanvanthari%20Hospital%20Ram%20Nagar%20Anantapur&t=&z=15&ie=UTF8&iwloc=&output=embed",
+    googleMapsLink: contact.googleMapsUrl || "https://maps.google.com/?q=Dhanvanthari+Hospital+Ram+Nagar+Anantapur",
     reachSteps: [
       { title: "From RTC Bus Stand", desc: "Easily accessible from the main bus stand." },
       { title: "From Railway Station", desc: "Located within convenient distance via auto or taxi." },
-      { title: "Landmark", desc: "Andhra Bank Colony, Ramnagar." }
+      { title: "Landmark", desc: "Ram Nagar Main Road / Andhra Bank Colony, Anantapur." }
     ],
     addressCard: {
       title: "Hospital Address",
-      subtext: "Dhanvanthari Hospital is located in Ramnagar, Anantapur.",
+      subtext: "Dhanvanthari Hospital is located at Ram Nagar Main Road / Andhra Bank Colony, Anantapur.",
       address: contact.address
     },
     parkingInfo: [
@@ -238,7 +227,7 @@ const Home = () => {
     contact: {
       phone: contact.phone,
       phoneLink: contact.phone.replace(/\D/g, ''),
-      location: "Ramnagar, Anantapur"
+      location: "Ram Nagar, Anantapur"
     },
     copyright: `© ${new Date().getFullYear()} Dhanvanthari Hospital. All rights reserved.`
   };
@@ -260,7 +249,7 @@ const Home = () => {
     subtitle: `${hospital.name}, ${contact.address}`,
     phone: contact.phone,
     phoneUrl: `tel:${contact.phone.replace(/\D/g, '')}`,
-    location: "Ramnagar, Anantapur",
+    location: "Ram Nagar, Anantapur",
     servicesList: departments.map(d => d.title)
   };
 
@@ -287,7 +276,9 @@ const Home = () => {
         <FetalMedicineFeature onOpenBooking={handleOpenBooking} data={aboutFeatureData} />
         
         {/* 5. INSIDE OUR FACILITY */}
-        <Facility data={facilitiesData} />
+        <div id="facilities">
+          <Facility data={facilitiesData} />
+        </div>
         
         {/* 6. PATIENT REVIEWS / JOURNEY */}
         <WhyVasundharaReviews data={patientJourneyData} />

@@ -151,3 +151,63 @@
     padding: 1.5rem 1.25rem;
   }
 }
+
+/* Flowing Marquee Departments & Services */
+@keyframes marqueeFlow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 0.875rem));
+  }
+}
+
+.services-marquee-container {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+  padding: 1rem 0;
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.services-marquee-track {
+  display: flex;
+  gap: 1.75rem;
+  width: max-content;
+  animation: marqueeFlow 38s linear infinite;
+  padding: 0.5rem 1rem;
+  will-change: transform;
+}
+
+.services-marquee-container:hover .services-marquee-track,
+.services-marquee-track:hover {
+  animation-play-state: paused !important;
+}
+
+.services-marquee-track .service-card {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .services-marquee-track .service-card {
+    width: 280px;
+    min-width: 280px;
+  }
+  .services-marquee-track {
+    animation-duration: 26s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-marquee-track {
+    animation-play-state: paused !important;
+  }
+}

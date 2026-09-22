@@ -30,9 +30,10 @@ export default function Navbar({ onOpenBooking, data }) {
     let lastScrollY = window.scrollY;
     let ticking = false;
 
-    const updateScrollDirection = () => {
+    const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
+      // 1. Compact / Expand state
       if (currentScrollY < 30) {
         setIsTop(true);
         setScrollDirection('up');
@@ -45,21 +46,81 @@ export default function Navbar({ onOpenBooking, data }) {
         }
       }
       lastScrollY = currentScrollY > 0 ? currentScrollY : 0;
+
+      // 2. Active Tab Scroll Spy
+      const links = content.navLinks || [];
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      // Bottom of page check -> activate last link (usually contact)
+      if (currentScrollY + windowHeight >= documentHeight - 60 && links.length > 0) {
+        setActiveTab(links[links.length - 1].id);
+        ticking = false;
+        return;
+      }
+
+      // Top of page check -> activate first link (about / hero)
+      if (currentScrollY < 120 && links.length > 0) {
+        setActiveTab(links[0].id);
+        ticking = false;
+        return;
+      }
+
+      // Check sections from bottom to top
+      const scrollPos = currentScrollY + 160;
+      for (let i = links.length - 1; i >= 0; i--) {
+        const link = links[i];
+        const targetId = link.href.replace('#', '');
+        const elem = document.getElementById(targetId);
+        if (elem) {
+          const top = elem.offsetTop;
+          if (scrollPos >= top) {
+            setActiveTab(link.id);
+            break;
+          }
+        }
+      }
+
       ticking = false;
     };
 
     const onScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(updateScrollDirection);
+        window.requestAnimationFrame(handleScroll);
         ticking = true;
       }
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
+    handleScroll();
+
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [content.navLinks]);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  const handleNavClick = (e, link) => {
+    e.preventDefault();
+    setActiveTab(link.id);
+    closeMobileMenu();
+
+    const targetId = link.href.replace('#', '');
+    const targetElem = document.getElementById(targetId);
+    if (targetElem) {
+      const navOffset = 90;
+      const elemPosition = targetElem.getBoundingClientRect().top;
+      const offsetPosition = elemPosition + window.pageYOffset - navOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+
+      if (window.history.pushState) {
+        window.history.pushState(null, null, link.href);
+      }
+    }
+  };
 
   const isCompact = scrollDirection === 'down' && !isTop;
 
@@ -67,7 +128,11 @@ export default function Navbar({ onOpenBooking, data }) {
     <header className={`navbar-header-glass ${isCompact ? 'navbar-compact' : 'navbar-expanded'}`}>
       <div className="navbar-pill-container">
         {/* Brand Logo & Wordmark Area */}
-        <a href="#hero" className="navbar-brand-glass" onClick={() => { setActiveTab('about'); closeMobileMenu(); }}>
+        <a 
+          href="#hero" 
+          className="navbar-brand-glass" 
+          onClick={(e) => handleNavClick(e, { id: 'about', href: '#hero' })}
+        >
           {content.logoImage && (
             <img 
               src={content.logoImage} 
@@ -90,7 +155,7 @@ export default function Navbar({ onOpenBooking, data }) {
               key={link.id}
               href={link.href} 
               className={`nav-link-glass ${activeTab === link.id ? 'active' : ''}`}
-              onClick={() => setActiveTab(link.id)}
+              onClick={(e) => handleNavClick(e, link)}
             >
               {link.label}
             </a>
@@ -144,7 +209,12 @@ export default function Navbar({ onOpenBooking, data }) {
 
             <nav className="mobile-nav-links-dark">
               {content.navLinks.map((link) => (
-                <a key={link.id} href={link.href} className="mobile-nav-link-dark" onClick={closeMobileMenu}>
+                <a 
+                  key={link.id} 
+                  href={link.href} 
+                  className={`mobile-nav-link-dark ${activeTab === link.id ? 'active' : ''}`} 
+                  onClick={(e) => handleNavClick(e, link)}
+                >
                   {link.label} <ChevronRight size={16} />
                 </a>
               ))}

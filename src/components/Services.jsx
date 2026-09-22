@@ -35,33 +35,65 @@ export default function Services({ onOpenBooking, data }) {
           </p>
         </div>
 
-        <div className="services-grid">
-          {content.services.map((service, index) => {
-            const IconComponent = iconMap[service.icon] || Activity;
-            return (
-              <div 
-                key={index} 
-                className="service-card"
-                onClick={() => onOpenBooking && onOpenBooking(service.title)}
-              >
-                <div className="card-top-row">
-                  <span className="service-number">{service.number}</span>
-                  <div className={`service-icon-box ${service.accent}`}>
-                    <IconComponent size={22} />
+        {content.isFlowing ? (
+          <div className="services-marquee-container">
+            <div className="services-marquee-track">
+              {[...content.services, ...content.services].map((service, index) => {
+                const IconComponent = iconMap[service.icon] || Activity;
+                return (
+                  <div 
+                    key={index} 
+                    className="service-card"
+                    onClick={() => onOpenBooking && onOpenBooking(service.title)}
+                  >
+                    <div className="card-top-row">
+                      <span className="service-number">{service.number}</span>
+                      <div className={`service-icon-box ${service.accent}`}>
+                        <IconComponent size={22} />
+                      </div>
+                    </div>
+
+                    <h3 className="service-title">{service.title}</h3>
+                    <p className="service-desc">{service.desc}</p>
+
+                    <div className="service-card-action">
+                      <span>Book Service</span>
+                      <ArrowUpRight size={16} className="arrow-icon" />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <div className="services-grid">
+            {content.services.map((service, index) => {
+              const IconComponent = iconMap[service.icon] || Activity;
+              return (
+                <div 
+                  key={index} 
+                  className="service-card"
+                  onClick={() => onOpenBooking && onOpenBooking(service.title)}
+                >
+                  <div className="card-top-row">
+                    <span className="service-number">{service.number}</span>
+                    <div className={`service-icon-box ${service.accent}`}>
+                      <IconComponent size={22} />
+                    </div>
+                  </div>
+
+                  <h3 className="service-title">{service.title}</h3>
+                  <p className="service-desc">{service.desc}</p>
+
+                  <div className="service-card-action">
+                    <span>Book Service</span>
+                    <ArrowUpRight size={16} className="arrow-icon" />
                   </div>
                 </div>
-
-                <h3 className="service-title">{service.title}</h3>
-                <p className="service-desc">{service.desc}</p>
-
-                <div className="service-card-action">
-                  <span>Book Service</span>
-                  <ArrowUpRight size={16} className="arrow-icon" />
-                </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
 
         {content.disclaimer && (
           <div className="services-disclaimer-box">
