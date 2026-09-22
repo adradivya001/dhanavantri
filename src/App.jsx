@@ -11,6 +11,8 @@ import Footer from './components/Footer';
 import AppointmentModal from './components/AppointmentModal';
 import MobileBottomBar from './components/MobileBottomBar';
 import FloatingSideActions from './components/FloatingSideActions';
+import { Routes, Route } from 'react-router-dom';
+import DhanvanthariHome from './pages/hospitals/dhanvanthari/Home';
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,48 +29,60 @@ export default function App() {
   };
 
   return (
-    <div className="app-main-wrapper">
-      {/* Black Glassmorphism Floating Navbar */}
-      <Navbar onOpenBooking={handleOpenBooking} />
+    <Routes>
+      <Route path="/dhanvanthari/*" element={<DhanvanthariHome />} />
+      <Route path="*" element={
+        <div className="app-main-wrapper">
+          {/* Temporary Banner for Navigation */}
+          <div style={{ background: '#006B7D', padding: '10px', textAlign: 'center', zIndex: 9999, position: 'relative' }}>
+            <a href="/dhanvanthari" style={{ color: 'white', fontWeight: 'bold', fontSize: '18px', textDecoration: 'underline' }}>
+              Click here to view the new Dhanvanthari Hospital UI
+            </a>
+          </div>
 
-      <main>
-        {/* 1. HERO SECTION */}
-        <Hero onOpenBooking={handleOpenBooking} />
+          {/* Black Glassmorphism Floating Navbar */}
+          <Navbar onOpenBooking={handleOpenBooking} />
 
-        {/* 2. OUR DOCTORS */}
-        <Doctors onOpenBooking={handleOpenBooking} />
+          <main>
+            {/* 1. HERO SECTION */}
+            <Hero onOpenBooking={handleOpenBooking} />
 
-        {/* 3. OUR SERVICES */}
-        <Services onOpenBooking={handleOpenBooking} />
+            {/* 2. OUR DOCTORS */}
+            <Doctors onOpenBooking={handleOpenBooking} />
 
-        {/* 4. FETAL MEDICINE */}
-        <FetalMedicineFeature onOpenBooking={handleOpenBooking} />
+            {/* 3. OUR SERVICES */}
+            <Services onOpenBooking={handleOpenBooking} />
 
-        {/* 5. INSIDE OUR FACILITY */}
-        <Facility />
+            {/* 4. FETAL MEDICINE */}
+            <FetalMedicineFeature onOpenBooking={handleOpenBooking} />
 
-        {/* 6. PATIENT REVIEWS */}
-        <WhyVasundharaReviews />
+            {/* 5. INSIDE OUR FACILITY */}
+            <Facility />
 
-        {/* 7. MERGED BOOK APPOINTMENT + VISIT US */}
-        <ContactLocation />
-      </main>
+            {/* 6. PATIENT REVIEWS */}
+            <WhyVasundharaReviews />
 
-      {/* 8. FOOTER */}
-      <Footer onOpenBooking={handleOpenBooking} />
+            {/* 7. MERGED BOOK APPOINTMENT + VISIT US */}
+            <ContactLocation />
+          </main>
 
-      {/* Interactive Appointment Modal */}
-      <AppointmentModal 
-        isOpen={isModalOpen} 
-        onClose={handleCloseBooking} 
-        initialService={selectedService} 
-      />
+          {/* 8. FOOTER */}
+          <Footer onOpenBooking={handleOpenBooking} />
 
-      {/* Fixed Mobile Bottom Action Bar */}
-      <MobileBottomBar onOpenBooking={handleOpenBooking} />
+          {/* Interactive Appointment Modal */}
+          <AppointmentModal 
+            isOpen={isModalOpen} 
+            onClose={handleCloseBooking} 
+            initialService={selectedService} 
+          />
 
-      {/* Floating Edge Side Action Tabs (WhatsApp, Book Appointment, Call) */}
-      <FloatingSideActions onOpenBooking={handleOpenBooking} />
-    </div>
+          {/* Fixed Mobile Bottom Action Bar */}
+          <MobileBottomBar onOpenBooking={handleOpenBooking} />
+
+          {/* Floating Edge Side Action Tabs (WhatsApp, Book Appointment, Call) */}
+          <FloatingSideActions onOpenBooking={handleOpenBooking} />
+        </div>
+      } />
+    </Routes>
   );
 }

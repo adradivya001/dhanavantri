@@ -2,12 +2,20 @@ import React from 'react';
 import { Calendar, Phone } from 'lucide-react';
 import './FloatingSideActions.css';
 
-export default function FloatingSideActions({ onOpenBooking }) {
+const DEFAULT_FLOATING_DATA = {
+  whatsappUrl: "https://wa.me/917989330974?text=Hello%20Vasundhara%20Diagnostics,%20I%20would%20like%20to%20inquire%20about%20an%20appointment.",
+  phoneUrl: "tel:7989330974",
+  phoneTitle: "Call 79893 30974"
+};
+
+export default function FloatingSideActions({ onOpenBooking, data }) {
+  const content = data || DEFAULT_FLOATING_DATA;
+
   return (
     <div className="floating-side-tabs" aria-label="Quick Action Buttons">
       {/* WhatsApp Action Tab */}
       <a 
-        href="https://wa.me/917989330974?text=Hello%20Vasundhara%20Diagnostics,%20I%20would%20like%20to%20inquire%20about%20an%20appointment." 
+        href={content.whatsappUrl} 
         target="_blank" 
         rel="noopener noreferrer"
         className="side-tab tab-whatsapp"
@@ -23,7 +31,7 @@ export default function FloatingSideActions({ onOpenBooking }) {
 
       {/* Book Appointment Action Tab */}
       <button 
-        onClick={() => onOpenBooking()} 
+        onClick={() => onOpenBooking && onOpenBooking()} 
         className="side-tab tab-calendar"
         aria-label="Book Appointment"
         title="Book Appointment"
@@ -35,10 +43,10 @@ export default function FloatingSideActions({ onOpenBooking }) {
 
       {/* Call Direct Action Tab */}
       <a 
-        href="tel:7989330974" 
+        href={content.phoneUrl} 
         className="side-tab tab-phone"
-        aria-label="Call Vasundhara Diagnostics"
-        title="Call 79893 30974"
+        aria-label="Call Hospital"
+        title={content.phoneTitle}
       >
         <div className="tab-icon-glass">
           <Phone size={22} />

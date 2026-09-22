@@ -2,11 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { Phone, Calendar, Menu, X, ChevronRight, ArrowRight } from 'lucide-react';
 import './Navbar.css';
 
-export default function Navbar({ onOpenBooking }) {
+export default function Navbar({ onOpenBooking, data }) {
   const [scrollDirection, setScrollDirection] = useState('up');
   const [isTop, setIsTop] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('about');
+
+  // Use provided data or fallback to Vasundhara default
+  const content = data || {
+    logoText: "VASUNDHARA",
+    logoSubtext: "Diagnostics & Fetal Medicine",
+    logoImage: "/images/vasundhara_logo.png",
+    phone: "79893 30974",
+    phoneUrl: "tel:7989330974",
+    navLinks: [
+      { id: "about", label: "About", href: "#hero" },
+      { id: "doctors", label: "Doctors", href: "#doctors" },
+      { id: "services", label: "Services", href: "#services" },
+      { id: "fetal-medicine", label: "Fetal Medicine", href: "#fetal-medicine" },
+      { id: "facility", label: "Facility", href: "#facility" },
+      { id: "reviews", label: "Reviews", href: "#reviews" },
+      { id: "contact", label: "Contact", href: "#contact" }
+    ]
+  };
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -50,74 +68,39 @@ export default function Navbar({ onOpenBooking }) {
       <div className="navbar-pill-container">
         {/* Brand Logo & Wordmark Area */}
         <a href="#hero" className="navbar-brand-glass" onClick={() => { setActiveTab('about'); closeMobileMenu(); }}>
-          <img 
-            src="/images/vasundhara_logo.png" 
-            alt="Vasundhara Diagnostics & Fetal Medicine Centre" 
-            className="brand-logo-img-glass"
-          />
-          <div className="brand-text-glass">
-            <span className="brand-title-glass">VASUNDHARA</span>
-            <span className="brand-subtitle-glass">Diagnostics & Fetal Medicine</span>
-          </div>
+          {content.logoImage && (
+            <img 
+              src={content.logoImage} 
+              alt={content.logoText || "Hospital Logo"} 
+              className="brand-logo-img-glass"
+            />
+          )}
+          {content.logoText ? (
+            <div className="brand-text-glass">
+              <span className="brand-title-glass">{content.logoText}</span>
+              <span className="brand-subtitle-glass">{content.logoSubtext}</span>
+            </div>
+          ) : null}
         </a>
 
         {/* Center Navigation Links Group */}
         <nav className="navbar-nav-glass desktop-only">
-          <a 
-            href="#hero" 
-            className={`nav-link-glass ${activeTab === 'about' ? 'active' : ''}`}
-            onClick={() => setActiveTab('about')}
-          >
-            About
-          </a>
-          <a 
-            href="#doctors" 
-            className={`nav-link-glass ${activeTab === 'doctors' ? 'active' : ''}`}
-            onClick={() => setActiveTab('doctors')}
-          >
-            Doctors
-          </a>
-          <a 
-            href="#services" 
-            className={`nav-link-glass ${activeTab === 'services' ? 'active' : ''}`}
-            onClick={() => setActiveTab('services')}
-          >
-            Services
-          </a>
-          <a 
-            href="#fetal-medicine" 
-            className={`nav-link-glass ${activeTab === 'fetal-medicine' ? 'active' : ''}`}
-            onClick={() => setActiveTab('fetal-medicine')}
-          >
-            Fetal Medicine
-          </a>
-          <a 
-            href="#facility" 
-            className={`nav-link-glass ${activeTab === 'facility' ? 'active' : ''}`}
-            onClick={() => setActiveTab('facility')}
-          >
-            Facility
-          </a>
-          <a 
-            href="#reviews" 
-            className={`nav-link-glass ${activeTab === 'reviews' ? 'active' : ''}`}
-            onClick={() => setActiveTab('reviews')}
-          >
-            Reviews
-          </a>
-          <a 
-            href="#contact" 
-            className={`nav-link-glass ${activeTab === 'contact' ? 'active' : ''}`}
-            onClick={() => setActiveTab('contact')}
-          >
-            Contact
-          </a>
+          {content.navLinks.map((link) => (
+            <a 
+              key={link.id}
+              href={link.href} 
+              className={`nav-link-glass ${activeTab === link.id ? 'active' : ''}`}
+              onClick={() => setActiveTab(link.id)}
+            >
+              {link.label}
+            </a>
+          ))}
         </nav>
 
         {/* Right CTA & Menu Group */}
         <div className="navbar-actions-glass">
           <button 
-            onClick={() => onOpenBooking()} 
+            onClick={() => onOpenBooking && onOpenBooking()} 
             className="btn-glass-pill nav-btn-book-glass desktop-only"
           >
             <span>Book Appointment</span> <ArrowRight size={16} />
@@ -140,15 +123,19 @@ export default function Navbar({ onOpenBooking }) {
           <div className="mobile-drawer-dark" onClick={(e) => e.stopPropagation()}>
             <div className="mobile-drawer-header">
               <div className="navbar-brand-glass">
-                <img 
-                  src="/images/vasundhara_logo.png" 
-                  alt="Vasundhara Diagnostics Logo" 
-                  className="brand-logo-img-sm" 
-                />
-                <div className="brand-text-glass">
-                  <span className="brand-title-glass">VASUNDHARA</span>
-                  <span className="brand-subtitle-glass">Diagnostics & Fetal Medicine</span>
-                </div>
+                {content.logoImage && (
+                  <img 
+                    src={content.logoImage} 
+                    alt={content.logoText || "Hospital Logo"} 
+                    className="brand-logo-img-sm" 
+                  />
+                )}
+                {content.logoText ? (
+                  <div className="brand-text-glass">
+                    <span className="brand-title-glass">{content.logoText}</span>
+                    <span className="brand-subtitle-glass">{content.logoSubtext}</span>
+                  </div>
+                ) : null}
               </div>
               <button className="drawer-close-btn-dark" onClick={closeMobileMenu}>
                 <X size={22} />
@@ -156,38 +143,22 @@ export default function Navbar({ onOpenBooking }) {
             </div>
 
             <nav className="mobile-nav-links-dark">
-              <a href="#hero" className="mobile-nav-link-dark" onClick={closeMobileMenu}>
-                About <ChevronRight size={16} />
-              </a>
-              <a href="#doctors" className="mobile-nav-link-dark" onClick={closeMobileMenu}>
-                Doctors <ChevronRight size={16} />
-              </a>
-              <a href="#services" className="mobile-nav-link-dark" onClick={closeMobileMenu}>
-                Services <ChevronRight size={16} />
-              </a>
-              <a href="#fetal-medicine" className="mobile-nav-link-dark" onClick={closeMobileMenu}>
-                Fetal Medicine <ChevronRight size={16} />
-              </a>
-              <a href="#facility" className="mobile-nav-link-dark" onClick={closeMobileMenu}>
-                Facility <ChevronRight size={16} />
-              </a>
-              <a href="#reviews" className="mobile-nav-link-dark" onClick={closeMobileMenu}>
-                Reviews <ChevronRight size={16} />
-              </a>
-              <a href="#contact" className="mobile-nav-link-dark" onClick={closeMobileMenu}>
-                Contact <ChevronRight size={16} />
-              </a>
+              {content.navLinks.map((link) => (
+                <a key={link.id} href={link.href} className="mobile-nav-link-dark" onClick={closeMobileMenu}>
+                  {link.label} <ChevronRight size={16} />
+                </a>
+              ))}
             </nav>
 
             <div className="mobile-drawer-footer-dark">
               <button 
-                onClick={() => { closeMobileMenu(); onOpenBooking(); }} 
+                onClick={() => { closeMobileMenu(); onOpenBooking && onOpenBooking(); }} 
                 className="btn-glass-pill btn-full"
               >
                 <Calendar size={18} /> Book Appointment
               </button>
-              <a href="tel:7989330974" className="btn btn-outline-light btn-full">
-                <Phone size={18} /> Call 79893 30974
+              <a href={content.phoneUrl} className="btn btn-outline-light btn-full">
+                <Phone size={18} /> Call {content.phone}
               </a>
             </div>
           </div>

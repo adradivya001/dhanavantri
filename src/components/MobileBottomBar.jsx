@@ -2,14 +2,22 @@ import React from 'react';
 import { Phone, Calendar } from 'lucide-react';
 import './MobileBottomBar.css';
 
-export default function MobileBottomBar({ onOpenBooking }) {
+const DEFAULT_MOBILE_DATA = {
+  phone: "79893 30974",
+  phoneUrl: "tel:7989330974",
+  buttonText: "Book Appointment"
+};
+
+export default function MobileBottomBar({ onOpenBooking, data }) {
+  const content = data || DEFAULT_MOBILE_DATA;
+
   return (
     <div className="mobile-bottom-bar mobile-only">
-      <a href="tel:7989330974" className="mobile-bar-btn call-btn">
-        <Phone size={18} /> Call 79893 30974
+      <a href={content.phoneUrl} className="mobile-bar-btn call-btn">
+        <Phone size={18} /> Call {content.phone}
       </a>
-      <button onClick={() => onOpenBooking()} className="mobile-bar-btn book-btn">
-        <Calendar size={18} /> Book Appointment
+      <button onClick={() => onOpenBooking && onOpenBooking()} className="mobile-bar-btn book-btn">
+        <Calendar size={18} /> {content.buttonText}
       </button>
     </div>
   );

@@ -2,7 +2,30 @@ import React from 'react';
 import { Phone, MapPin, ArrowUp } from 'lucide-react';
 import './Footer.css';
 
-export default function Footer({ onOpenBooking }) {
+const DEFAULT_FOOTER_DATA = {
+  logoImage: "/images/vasundhara_logo.png",
+  brandName: "VASUNDHARA DIAGNOSTICS",
+  brandSub: "Fetal Medicine Centre",
+  tagline: "Specialized diagnostics and fetal medicine care in Sai Nagar, Anantapur.",
+  quickLinks: [
+    { label: "About", href: "#hero" },
+    { label: "Doctors", href: "#doctors" },
+    { label: "Services", href: "#services" },
+    { label: "Fetal Medicine", href: "#fetal-medicine" },
+    { label: "Reviews", href: "#reviews" },
+    { label: "Contact", href: "#contact" }
+  ],
+  contact: {
+    phone: "79893 30974",
+    phoneLink: "7989330974",
+    location: "Sai Nagar, Anantapur"
+  },
+  copyright: "© 2026 Vasundhara Diagnostics & Fetal Medicine Centre. All rights reserved."
+};
+
+export default function Footer({ onOpenBooking, data }) {
+  const content = data || DEFAULT_FOOTER_DATA;
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -14,18 +37,22 @@ export default function Footer({ onOpenBooking }) {
           {/* LEFT: Logo & Short Description */}
           <div className="footer-col-brand">
             <div className="footer-brand-header">
-              <img 
-                src="/images/vasundhara_logo.png" 
-                alt="Vasundhara Diagnostics Logo" 
-                className="footer-logo-sm" 
-              />
-              <div className="footer-brand-title-wrap">
-                <span className="footer-brand-name">VASUNDHARA DIAGNOSTICS</span>
-                <span className="footer-brand-sub">Fetal Medicine Centre</span>
-              </div>
+              {content.logoImage && (
+                <img 
+                  src={content.logoImage} 
+                  alt={`${content.brandName || "Hospital"} Logo`} 
+                  className="footer-logo-sm" 
+                />
+              )}
+              {content.brandName ? (
+                <div className="footer-brand-title-wrap">
+                  <span className="footer-brand-name">{content.brandName}</span>
+                  <span className="footer-brand-sub">{content.brandSub}</span>
+                </div>
+              ) : null}
             </div>
             <p className="footer-tagline">
-              Specialized diagnostics and fetal medicine care in Sai Nagar, Anantapur.
+              {content.tagline}
             </p>
           </div>
 
@@ -33,12 +60,9 @@ export default function Footer({ onOpenBooking }) {
           <div className="footer-col-links">
             <span className="footer-heading">Quick Links</span>
             <div className="footer-links-grid">
-              <a href="#about">About</a>
-              <a href="#doctors">Doctors</a>
-              <a href="#services">Services</a>
-              <a href="#fetal-medicine">Fetal Medicine</a>
-              <a href="#reviews">Reviews</a>
-              <a href="#contact">Contact</a>
+              {content.quickLinks.map((link, idx) => (
+                <a key={idx} href={link.href}>{link.label}</a>
+              ))}
             </div>
           </div>
 
@@ -46,14 +70,14 @@ export default function Footer({ onOpenBooking }) {
           <div className="footer-col-contact">
             <span className="footer-heading">Contact</span>
             <div className="footer-contact-details">
-              <a href="tel:7989330974" className="footer-phone">
-                <Phone size={14} /> 79893 30974
+              <a href={`tel:${content.contact.phoneLink}`} className="footer-phone">
+                <Phone size={14} /> {content.contact.phone}
               </a>
               <span className="footer-location">
-                <MapPin size={14} /> Sai Nagar, Anantapur
+                <MapPin size={14} /> {content.contact.location}
               </span>
             </div>
-            <button onClick={() => onOpenBooking()} className="btn-footer-book">
+            <button onClick={() => onOpenBooking && onOpenBooking()} className="btn-footer-book">
               Book Appointment
             </button>
           </div>
@@ -62,7 +86,7 @@ export default function Footer({ onOpenBooking }) {
         {/* BOTTOM BAR */}
         <div className="footer-bottom-compact">
           <p className="footer-copyright">
-            © 2026 Vasundhara Diagnostics & Fetal Medicine Centre. All rights reserved.
+            {content.copyright}
           </p>
           <button onClick={scrollToTop} className="footer-back-top" aria-label="Back to top">
             Back to top ↑

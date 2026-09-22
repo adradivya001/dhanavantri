@@ -2,114 +2,116 @@ import React from 'react';
 import { UserCheck, Stethoscope, Sparkles } from 'lucide-react';
 import './Doctors.css';
 
-export default function Doctors({ onOpenBooking }) {
+export default function Doctors({ onOpenBooking, data }) {
+  const defaultData = {
+    eyebrow: "OUR MEDICAL TEAM",
+    heading: "Expertise You Can Trust",
+    subheading: "Experienced medical care across fetal medicine, radiology, general medicine and diabetes care.",
+    doctorsList: [
+      {
+        id: "vasundhara",
+        name: "Dr. N. Vasundhara",
+        signage: "Vasundhara Diagnostics & Fetal Medicine",
+        icon: "UserCheck",
+        theme: "teal",
+        credentials: [
+          { text: "MBBS, MD Radiology", type: "primary" },
+          { text: "Fellow in Fetal Medicine", type: "highlight" }
+        ],
+        desc: "Specialized in radiology and fetal medicine, with a focus on diagnostic imaging and pregnancy-related fetal assessment.",
+        tags: ["Radiology", "Fetal Medicine", "Diagnostic Imaging"],
+        actionLabel: "Book Consultation",
+        actionService: "Fetal Medicine Assessment"
+      },
+      {
+        id: "saikiran",
+        name: "Dr. V. Sai Kiran Reddy",
+        signage: "General Medicine & Diabetes Specialist",
+        icon: "Stethoscope",
+        theme: "navy",
+        credentials: [
+          { text: "MBBS, DNB (General Medicine)", type: "primary" },
+          { text: "DFID (Fellowship in Diabetes)", type: "highlight-navy" },
+          { text: "Ex-Registrar, CMC Vellore", type: "sub" }
+        ],
+        desc: "General medicine physician with specialized fellowship training in diabetes care and management.",
+        tags: ["General Medicine", "Diabetes Care"],
+        actionLabel: "Book Consultation",
+        actionService: "General Medicine Consultation"
+      }
+    ]
+  };
+
+  const content = data || defaultData;
+
+  const getIcon = (iconName) => {
+    if (iconName === "Stethoscope") return <Stethoscope size={32} />;
+    return <UserCheck size={32} />;
+  };
+
   return (
     <section id="doctors" className="doctors-section section-padding">
       <div className="container">
         {/* Section Header */}
         <div className="doctors-header">
           <div className="eyebrow">
-            <Sparkles size={14} /> OUR MEDICAL TEAM
+            <Sparkles size={14} /> {content.eyebrow}
           </div>
-          <h2 className="section-heading">Expertise You Can Trust</h2>
+          <h2 className="section-heading">{content.heading}</h2>
           <p className="section-subheading">
-            Experienced medical care across fetal medicine, radiology, general medicine and diabetes care.
+            {content.subheading}
           </p>
         </div>
 
-        {/* 2 Doctor Cards Grid */}
+        {/* Doctors Grid */}
         <div className="doctors-grid">
-          {/* DOCTOR 1: Dr. N. Vasundhara */}
-          <div className="doctor-card">
-            {/* Top Signage / Portrait Display */}
-            <div className="doctor-visual-header header-teal">
-              <div className="doctor-icon-avatar avatar-teal">
-                <UserCheck size={32} />
-              </div>
-              <div className="doctor-signage-tag">
-                <span>Vasundhara Diagnostics & Fetal Medicine</span>
-              </div>
-            </div>
-
-            <div className="doctor-card-content">
-              {/* Doctor Name */}
-              <h3 className="doctor-name">Dr. N. Vasundhara</h3>
-
-              {/* Credentials */}
-              <div className="doctor-credentials">
-                <span className="cred-badge cred-primary">MBBS, MD Radiology</span>
-                <span className="cred-badge cred-highlight">Fellow in Fetal Medicine</span>
+          {content.doctorsList.map((doc) => (
+            <div className="doctor-card" key={doc.id}>
+              {/* Top Signage / Portrait Display */}
+              <div className={`doctor-visual-header header-${doc.theme}`}>
+                <div className={`doctor-icon-avatar avatar-${doc.theme}`}>
+                  {getIcon(doc.icon)}
+                </div>
+                <div className={`doctor-signage-tag ${doc.theme === 'navy' ? 'tag-navy' : ''}`}>
+                  <span>{doc.signage}</span>
+                </div>
               </div>
 
-              {/* Short Context Description */}
-              <p className="doctor-context-desc">
-                Specialized in radiology and fetal medicine, with a focus on diagnostic imaging and pregnancy-related fetal assessment.
-              </p>
+              <div className="doctor-card-content">
+                {/* Doctor Name */}
+                <h3 className="doctor-name">{doc.name}</h3>
 
-              {/* Specialization Tags */}
-              <div className="doctor-tags-row">
-                <span className="spec-tag tag-teal">Radiology</span>
-                <span className="spec-tag tag-teal">Fetal Medicine</span>
-                <span className="spec-tag tag-teal">Diagnostic Imaging</span>
-              </div>
+                {/* Credentials */}
+                <div className="doctor-credentials">
+                  {doc.credentials.map((cred, i) => (
+                    <span key={i} className={`cred-badge cred-${cred.type}`}>{cred.text}</span>
+                  ))}
+                </div>
 
-              {/* Card Footer Action */}
-              <div className="doctor-action-footer">
-                <button 
-                  onClick={() => onOpenBooking("Fetal Medicine Assessment")} 
-                  className="btn-doctor-action btn-action-teal"
-                >
-                  Book Consultation
-                </button>
-              </div>
-            </div>
-          </div>
+                {/* Short Context Description */}
+                <p className="doctor-context-desc">
+                  {doc.desc}
+                </p>
 
-          {/* DOCTOR 2: Dr. V. Sai Kiran Reddy */}
-          <div className="doctor-card">
-            {/* Top Signage / Portrait Display */}
-            <div className="doctor-visual-header header-navy">
-              <div className="doctor-icon-avatar avatar-navy">
-                <Stethoscope size={32} />
-              </div>
-              <div className="doctor-signage-tag tag-navy">
-                <span>General Medicine & Diabetes Specialist</span>
+                {/* Specialization Tags */}
+                <div className="doctor-tags-row">
+                  {doc.tags.map((tag, i) => (
+                    <span key={i} className={`spec-tag tag-${doc.theme}`}>{tag}</span>
+                  ))}
+                </div>
+
+                {/* Card Footer Action */}
+                <div className="doctor-action-footer">
+                  <button 
+                    onClick={() => onOpenBooking && onOpenBooking(doc.actionService)} 
+                    className={`btn-doctor-action btn-action-${doc.theme}`}
+                  >
+                    {doc.actionLabel}
+                  </button>
+                </div>
               </div>
             </div>
-
-            <div className="doctor-card-content">
-              {/* Doctor Name */}
-              <h3 className="doctor-name">Dr. V. Sai Kiran Reddy</h3>
-
-              {/* Credentials */}
-              <div className="doctor-credentials">
-                <span className="cred-badge cred-primary">MBBS, DNB (General Medicine)</span>
-                <span className="cred-badge cred-highlight-navy">DFID (Fellowship in Diabetes)</span>
-                <span className="cred-badge cred-sub">Ex-Registrar, CMC Vellore</span>
-              </div>
-
-              {/* Short Context Description */}
-              <p className="doctor-context-desc">
-                General medicine physician with specialized fellowship training in diabetes care and management.
-              </p>
-
-              {/* Specialization Tags */}
-              <div className="doctor-tags-row">
-                <span className="spec-tag tag-navy">General Medicine</span>
-                <span className="spec-tag tag-navy">Diabetes Care</span>
-              </div>
-
-              {/* Card Footer Action */}
-              <div className="doctor-action-footer">
-                <button 
-                  onClick={() => onOpenBooking("General Medicine Consultation")} 
-                  className="btn-doctor-action btn-action-navy"
-                >
-                  Book Consultation
-                </button>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

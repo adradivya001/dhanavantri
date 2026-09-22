@@ -2,15 +2,46 @@ import React, { useState } from 'react';
 import { MapPin, Navigation, ExternalLink, Compass, Clock, Phone, Copy, Check, Car, ShieldCheck } from 'lucide-react';
 import './ContactLocation.css';
 
-export default function ContactLocation() {
+const DEFAULT_CONTACT_DATA = {
+  eyebrow: "LOCATION & ACCESSIBILITY",
+  heading: "Visit Our Clinic",
+  subheading: "Conveniently located in Sai Nagar, Anantapur with full parking and step-free patient accessibility.",
+  mapUrl: "https://maps.google.com/maps?q=Vasundhara%20Diagnostics%20Fetal%20Medicine%20Centre%20Sai%20Nagar%20Anantapur&t=&z=15&ie=UTF8&iwloc=&output=embed",
+  googleMapsLink: "https://www.google.com/maps/search/?api=1&query=Vasundhara+Diagnostics+Fetal+Medicine+Centre+Sai+Nagar+Anantapur",
+  reachSteps: [
+    { title: "From Anantapur RTC Bus Stand (Approx. 2.0 km)", desc: "Take the main road directly towards Sai Nagar. The clinic is prominently located on the main Sai Nagar double road avenue." },
+    { title: "From Anantapur Railway Station (Approx. 2.8 km)", desc: "Head north-east on Station Road towards Sai Nagar main junction. Accessible via auto or taxi in 8–10 minutes." },
+    { title: "Key Landmarks", desc: "Located in Sai Nagar, Anantapur. Look for the prominent Vasundhara Diagnostics & Fetal Medicine Centre glow sign boards." }
+  ],
+  addressCard: {
+    title: "Clinic Address",
+    subtext: "Vasundhara Diagnostics & Fetal Medicine Centre is easily accessible for patients from all corners of Anantapur District.",
+    address: "Sai Nagar, Anantapur, Andhra Pradesh - 515001, India"
+  },
+  parkingInfo: [
+    { label: "Free Parking:", desc: "Spacious vehicle parking directly in front of the clinic building." },
+    { label: "Ground Access:", desc: "Dedicated ground floor entrance with step-free patient reception lounge." },
+    { label: "Wheelchair Friendly:", desc: "Step-free entry and wheelchair assistance available for expectant mothers." }
+  ],
+  opd: {
+    title: "OPD STATUS",
+    hours: "Open Today · 9:00 AM - 8:00 PM",
+    liveStatus: "CLINIC OPEN",
+    note: "• Fetal Medicine & Diagnostic Imaging Consultations Active"
+  },
+  phones: [
+    { label: "Vasundhara Desk:", number: "79893 30974", link: "7989330974" },
+    { label: "Direct Hotline:", number: "+91 93912 51558", link: "+919391251558" }
+  ],
+  whatsappLink: "https://wa.me/917989330974?text=Hello%20Vasundhara%20Diagnostics,%20I%20would%20like%20to%20inquire%20about%20location%20and%20consultations."
+};
+
+export default function ContactLocation({ data }) {
   const [copied, setCopied] = useState(false);
-  
-  const addressText = "Vasundhara Diagnostics & Fetal Medicine Centre, Sai Nagar, Anantapur, Andhra Pradesh - 515001, India";
-  const mapsUrl = "https://www.google.com/maps/search/?api=1&query=Vasundhara+Diagnostics+Fetal+Medicine+Centre+Sai+Nagar+Anantapur";
-  const whatsappUrl = "https://wa.me/917989330974?text=Hello%20Vasundhara%20Diagnostics,%20I%20would%20like%20to%20inquire%20about%20location%20and%20consultations.";
+  const content = data || DEFAULT_CONTACT_DATA;
 
   const handleCopyAddress = () => {
-    navigator.clipboard.writeText(addressText);
+    navigator.clipboard.writeText(content.addressCard.address);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -20,22 +51,20 @@ export default function ContactLocation() {
       <div className="container">
         {/* Section Header */}
         <div className="contact-header">
-          <div className="eyebrow">LOCATION & ACCESSIBILITY</div>
-          <h2 className="section-heading">Visit Our Clinic</h2>
+          <div className="eyebrow">{content.eyebrow}</div>
+          <h2 className="section-heading">{content.heading}</h2>
           <p className="section-subheading">
-            Conveniently located in Sai Nagar, Anantapur with full parking and step-free patient accessibility.
+            {content.subheading}
           </p>
         </div>
 
-        {/* 2-Column Exact Layout Grid matching reference */}
         <div className="location-grid-layout">
           {/* LEFT COLUMN */}
           <div className="location-col-left">
-            {/* 1. Large Interactive Map Card */}
             <div className="map-card-wrapper">
               <iframe
-                title="Vasundhara Diagnostics & Fetal Medicine Centre Map"
-                src="https://maps.google.com/maps?q=Vasundhara%20Diagnostics%20Fetal%20Medicine%20Centre%20Sai%20Nagar%20Anantapur&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                title="Location Map"
+                src={content.mapUrl}
                 width="100%"
                 height="340"
                 style={{ border: 0 }}
@@ -44,7 +73,7 @@ export default function ContactLocation() {
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
               <a 
-                href={mapsUrl} 
+                href={content.googleMapsLink} 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="map-overlay-btn"
@@ -54,67 +83,45 @@ export default function ContactLocation() {
               </a>
             </div>
 
-            {/* 2. How to Reach Card */}
             <div className="reach-us-card">
               <div className="reach-header">
                 <div className="reach-icon-badge">
                   <Compass size={20} />
                 </div>
-                <h3 className="card-title">How to Reach Vasundhara Diagnostics</h3>
+                <h3 className="card-title">How to Reach Us</h3>
               </div>
 
               <div className="reach-steps-list">
-                <div className="reach-step-item">
-                  <span className="step-num">1</span>
-                  <div className="step-content">
-                    <h4 className="step-title">From Anantapur RTC Bus Stand (Approx. 2.0 km)</h4>
-                    <p className="step-desc">
-                      Take the main road directly towards Sai Nagar. The clinic is prominently located on the main Sai Nagar double road avenue.
-                    </p>
+                {content.reachSteps.map((step, idx) => (
+                  <div key={idx} className="reach-step-item">
+                    <span className="step-num">{idx + 1}</span>
+                    <div className="step-content">
+                      <h4 className="step-title">{step.title}</h4>
+                      <p className="step-desc">{step.desc}</p>
+                    </div>
                   </div>
-                </div>
-
-                <div className="reach-step-item">
-                  <span className="step-num">2</span>
-                  <div className="step-content">
-                    <h4 className="step-title">From Anantapur Railway Station (Approx. 2.8 km)</h4>
-                    <p className="step-desc">
-                      Head north-east on Station Road towards Sai Nagar main junction. Accessible via auto or taxi in 8–10 minutes.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="reach-step-item">
-                  <span className="step-num">3</span>
-                  <div className="step-content">
-                    <h4 className="step-title">Key Landmarks</h4>
-                    <p className="step-desc">
-                      Located in Sai Nagar, Anantapur. Look for the prominent Vasundhara Diagnostics & Fetal Medicine Centre glow sign boards.
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
 
           {/* RIGHT COLUMN */}
           <div className="location-col-right">
-            {/* 1. Clinic Address Card */}
             <div className="address-card">
               <div className="address-card-header">
                 <div className="address-icon-badge">
                   <MapPin size={22} />
                 </div>
                 <div>
-                  <h3 className="card-title">Clinic Address</h3>
+                  <h3 className="card-title">{content.addressCard.title}</h3>
                   <p className="address-subtext">
-                    Vasundhara Diagnostics & Fetal Medicine Centre is easily accessible for patients from all corners of Anantapur District.
+                    {content.addressCard.subtext}
                   </p>
                 </div>
               </div>
 
               <div className="address-full-text">
-                <strong>Sai Nagar, Anantapur, Andhra Pradesh - 515001, India</strong>
+                <strong>{content.addressCard.address}</strong>
               </div>
 
               <div className="address-actions-row">
@@ -125,7 +132,7 @@ export default function ContactLocation() {
               </div>
 
               <a 
-                href={mapsUrl} 
+                href={content.googleMapsLink} 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="btn-directions-primary"
@@ -135,7 +142,6 @@ export default function ContactLocation() {
               </a>
             </div>
 
-            {/* 2. Parking & Accessibility Card */}
             <div className="parking-access-card">
               <div className="parking-header">
                 <Car size={18} className="parking-icon" />
@@ -143,37 +149,32 @@ export default function ContactLocation() {
               </div>
 
               <ul className="parking-list">
-                <li>
-                  <strong>Free Parking:</strong> Spacious vehicle parking directly in front of the clinic building.
-                </li>
-                <li>
-                  <strong>Ground Access:</strong> Dedicated ground floor entrance with step-free patient reception lounge.
-                </li>
-                <li>
-                  <strong>Wheelchair Friendly:</strong> Step-free entry and wheelchair assistance available for expectant mothers.
-                </li>
+                {content.parkingInfo.map((info, idx) => (
+                  <li key={idx}>
+                    <strong>{info.label}</strong> {info.desc}
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* 3. OPD Status & Direct Helpline Dark Card */}
             <div className="opd-dark-card">
               <div className="opd-status-header">
                 <div className="opd-title-group">
                   <Clock size={18} className="text-teal" />
                   <div>
-                    <span className="opd-label">OPD STATUS</span>
-                    <span className="opd-hours">Open Today · 9:00 AM - 8:00 PM</span>
+                    <span className="opd-label">{content.opd.title}</span>
+                    <span className="opd-hours">{content.opd.hours}</span>
                   </div>
                 </div>
 
                 <div className="opd-live-badge">
                   <span className="live-dot-green"></span>
-                  <span>CLINIC OPEN</span>
+                  <span>{content.opd.liveStatus}</span>
                 </div>
               </div>
 
               <p className="opd-alert-note">
-                • Fetal Medicine & Diagnostic Imaging Consultations Active
+                {content.opd.note}
               </p>
 
               <div className="opd-divider"></div>
@@ -184,19 +185,17 @@ export default function ContactLocation() {
                   <span>DIRECT HELPLINE</span>
                 </div>
                 <div className="helpline-numbers">
-                  <div className="num-row">
-                    <span className="num-label">Vasundhara Desk:</span>
-                    <a href="tel:7989330974" className="num-value">79893 30974</a>
-                  </div>
-                  <div className="num-row">
-                    <span className="num-label">Direct Hotline:</span>
-                    <a href="tel:9391251558" className="num-value">+91 93912 51558</a>
-                  </div>
+                  {content.phones.map((phone, idx) => (
+                    <div key={idx} className="num-row">
+                      <span className="num-label">{phone.label}</span>
+                      <a href={`tel:${phone.link}`} className="num-value">{phone.number}</a>
+                    </div>
+                  ))}
                 </div>
               </div>
 
               <a 
-                href={whatsappUrl} 
+                href={content.whatsappLink} 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="btn-whatsapp-full"

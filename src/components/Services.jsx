@@ -1,72 +1,48 @@
 import React from 'react';
-import { Baby, Activity, Scan, Stethoscope, HeartPulse, Pill, ArrowUpRight } from 'lucide-react';
+import { Baby, Activity, Scan, Stethoscope, HeartPulse, Pill, ArrowUpRight, Scissors, Bone, Brain, Ear, Syringe, Ambulance, UserPlus, FileText, CalendarCheck, FileHeart } from 'lucide-react';
 import './Services.css';
 
-const SERVICES_DATA = [
-  {
-    number: "01",
-    icon: Baby,
-    title: "Fetal Medicine",
-    desc: "Specialized fetal assessment and pregnancy-focused care.",
-    accent: "teal"
-  },
-  {
-    number: "02",
-    icon: Activity,
-    title: "Ultrasound & Sonography",
-    desc: "Diagnostic ultrasound and sonography services.",
-    accent: "primary"
-  },
-  {
-    number: "03",
-    icon: Scan,
-    title: "Diagnostic Imaging",
-    desc: "Imaging services supporting clinical evaluation.",
-    accent: "teal"
-  },
-  {
-    number: "04",
-    icon: Stethoscope,
-    title: "General Medicine",
-    desc: "Medical consultation and care for common health concerns.",
-    accent: "primary"
-  },
-  {
-    number: "05",
-    icon: HeartPulse,
-    title: "Diabetes Care",
-    desc: "Focused medical care for diabetes management.",
-    accent: "teal"
-  },
-  {
-    number: "06",
-    icon: Pill,
-    title: "Pharmacy",
-    desc: "Convenient access to medicines within the facility.",
-    accent: "primary"
-  }
-];
+const DEFAULT_SERVICES_DATA = {
+  eyebrow: "OUR SERVICES",
+  heading: "Comprehensive Care, Under One Roof",
+  subheading: "Focused medical and diagnostic services designed around patient needs.",
+  services: [
+    { number: "01", icon: "Baby", title: "Fetal Medicine", desc: "Specialized fetal assessment and pregnancy-focused care.", accent: "teal" },
+    { number: "02", icon: "Activity", title: "Ultrasound & Sonography", desc: "Diagnostic ultrasound and sonography services.", accent: "primary" },
+    { number: "03", icon: "Scan", title: "Diagnostic Imaging", desc: "Imaging services supporting clinical evaluation.", accent: "teal" },
+    { number: "04", icon: "Stethoscope", title: "General Medicine", desc: "Medical consultation and care for common health concerns.", accent: "primary" },
+    { number: "05", icon: "HeartPulse", title: "Diabetes Care", desc: "Focused medical care for diabetes management.", accent: "teal" },
+    { number: "06", icon: "Pill", title: "Pharmacy", desc: "Convenient access to medicines within the facility.", accent: "primary" }
+  ],
+  disclaimer: "* Facility offerings include Vasundhara Diagnostics & Fetal Medicine Centre and Sai Kiran Hospital Medical & Diabetic Center in Sai Nagar, Anantapur."
+};
 
-export default function Services({ onOpenBooking }) {
+const iconMap = {
+  Baby, Activity, Scan, Stethoscope, HeartPulse, Pill, Scissors, Bone, Brain, Ear, Syringe, Ambulance, UserPlus, FileText, CalendarCheck, FileHeart
+};
+
+export default function Services({ onOpenBooking, data }) {
+  const content = data || DEFAULT_SERVICES_DATA;
+
   return (
     <section id="services" className="services-section section-padding">
       <div className="container">
         <div className="services-header">
-          <div className="eyebrow">OUR SERVICES</div>
-          <h2 className="section-heading">Comprehensive Care, Under One Roof</h2>
+          <div className="eyebrow">{content.eyebrow}</div>
+          <h2 className="section-heading">{content.heading}</h2>
           <p className="section-subheading">
-            Focused medical and diagnostic services designed around patient needs.
+            {content.subheading}
           </p>
         </div>
 
         <div className="services-grid">
-          {SERVICES_DATA.map((service, index) => {
-            const IconComponent = service.icon;
+          {content.services.map((service, index) => {
+            const IconComponent = iconMap[service.icon] || Activity;
             return (
               <div 
                 key={index} 
                 className="service-card"
-                onClick={() => onOpenBooking(service.title)}
+                onClick={() => onOpenBooking && onOpenBooking(service.title)}
               >
                 <div className="card-top-row">
                   <span className="service-number">{service.number}</span>
@@ -87,11 +63,11 @@ export default function Services({ onOpenBooking }) {
           })}
         </div>
 
-        <div className="services-disclaimer-box">
-          <p>
-            * Facility offerings include Vasundhara Diagnostics & Fetal Medicine Centre and Sai Kiran Hospital Medical & Diabetic Center in Sai Nagar, Anantapur.
-          </p>
-        </div>
+        {content.disclaimer && (
+          <div className="services-disclaimer-box">
+            <p>{content.disclaimer}</p>
+          </div>
+        )}
       </div>
     </section>
   );

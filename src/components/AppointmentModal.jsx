@@ -2,20 +2,30 @@ import React, { useState } from 'react';
 import { X, Calendar, Clock, Phone, User, CheckCircle2, ChevronRight, Stethoscope } from 'lucide-react';
 import './AppointmentModal.css';
 
-const SERVICES_LIST = [
-  "Fetal Medicine Assessment",
-  "Pregnancy Scan / Anomaly Scan",
-  "Ultrasound & Sonography",
-  "Laboratory Diagnostic Test",
-  "Prenatal Screening",
-  "General Health Screening"
-];
+const DEFAULT_MODAL_DATA = {
+  title: "Book an Appointment",
+  subtitle: "Vasundhara Diagnostics & Fetal Medicine Centre, Sai Nagar, Anantapur.",
+  phone: "79893 30974",
+  phoneUrl: "tel:7989330974",
+  location: "Sai Nagar, Anantapur",
+  servicesList: [
+    "Fetal Medicine Assessment",
+    "Pregnancy Scan / Anomaly Scan",
+    "Ultrasound & Sonography",
+    "Laboratory Diagnostic Test",
+    "Prenatal Screening",
+    "General Health Screening"
+  ]
+};
 
-export default function AppointmentModal({ isOpen, onClose, initialService = '' }) {
+export default function AppointmentModal({ isOpen, onClose, initialService = '', data }) {
+  const content = data || DEFAULT_MODAL_DATA;
+  const servicesList = content.servicesList || DEFAULT_MODAL_DATA.servicesList;
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    service: initialService || SERVICES_LIST[0],
+    service: initialService || servicesList[0],
     date: '',
     time: 'Morning (9 AM - 1 PM)',
     notes: ''
@@ -35,7 +45,7 @@ export default function AppointmentModal({ isOpen, onClose, initialService = '' 
     setFormData({
       name: '',
       phone: '',
-      service: SERVICES_LIST[0],
+      service: servicesList[0],
       date: '',
       time: 'Morning (9 AM - 1 PM)',
       notes: ''
@@ -56,9 +66,9 @@ export default function AppointmentModal({ isOpen, onClose, initialService = '' 
               <div className="modal-badge">
                 <Stethoscope size={14} /> Quick Appointment Request
               </div>
-              <h3 id="modal-title" className="modal-title">Book an Appointment</h3>
+              <h3 id="modal-title" className="modal-title">{content.title}</h3>
               <p className="modal-subtitle">
-                Vasundhara Diagnostics & Fetal Medicine Centre, Sai Nagar, Anantapur.
+                {content.subtitle}
               </p>
             </div>
 
@@ -94,13 +104,13 @@ export default function AppointmentModal({ isOpen, onClose, initialService = '' 
               </div>
 
               <div className="form-group">
-                <label className="form-label">Select Diagnostic Service</label>
+                <label className="form-label">Select Service</label>
                 <select
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                   className="form-select"
                 >
-                  {SERVICES_LIST.map((srv, idx) => (
+                  {servicesList.map((srv, idx) => (
                     <option key={idx} value={srv}>{srv}</option>
                   ))}
                 </select>
@@ -140,7 +150,7 @@ export default function AppointmentModal({ isOpen, onClose, initialService = '' 
                 <label className="form-label">Additional Notes (Optional)</label>
                 <textarea
                   rows={2}
-                  placeholder="Mention any specific scan requirements..."
+                  placeholder="Mention any specific requirements..."
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   className="form-textarea"
@@ -152,14 +162,14 @@ export default function AppointmentModal({ isOpen, onClose, initialService = '' 
               </button>
 
               <p className="form-disclaimer">
-                Our care coordinator will contact you promptly at <strong>79893 30974</strong> to confirm your slot.
+                Our care coordinator will contact you promptly at <strong>{content.phone}</strong> to confirm your slot.
               </p>
             </form>
           </div>
         ) : (
           <div className="modal-success-state">
             <div className="success-icon-wrap">
-              <CheckCircle2 size={48} className="success-icon" />
+               <CheckCircle2 size={48} className="success-icon" />
             </div>
             <h3>Appointment Request Received!</h3>
             <p>
@@ -167,10 +177,10 @@ export default function AppointmentModal({ isOpen, onClose, initialService = '' 
             </p>
             <div className="success-details-card">
               <div className="detail-item">
-                <span>Location:</span> <strong>Sai Nagar, Anantapur</strong>
+                <span>Location:</span> <strong>{content.location}</strong>
               </div>
               <div className="detail-item">
-                <span>Direct Helpline:</span> <strong><a href="tel:7989330974">79893 30974</a></strong>
+                <span>Direct Helpline:</span> <strong><a href={content.phoneUrl}>{content.phone}</a></strong>
               </div>
             </div>
             <button onClick={handleReset} className="btn btn-primary btn-full">
